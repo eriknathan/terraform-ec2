@@ -1,6 +1,43 @@
 # terraform-ec2
 Código Terraform para criar uma instância EC2 e toda a rede necessária para acessá-la pela porta 22.
 
+---
+## Network Module
+Este código possui um módulo de rede que é chamado a partir do modules.tf (main) do terraform.
+
+A infraestrutura de rede consiste em:
+
+- VPC
+- Subnet
+- Internet Gateway
+- Route Table
+- Route Table Association
+- Security Group (with port 22 open)
+
+---
+## EC2 Instance
+O código ec2-instance.tf cria:
+
+- Uma instância ec2 simples com IP público para que possa ser acessada pela porta 22
+- Um par de chaves ssh na AWS que deve ser criado previamente em uma máquina Linux.
+
+---
+## Variables
+A configuração principal possui um arquivo variables.tf, é necessário informar essas variáveis ​​​​a partir da linha de comando ou com um arquivo **terraform.tfvars**.
+
+- example terraform.tfvars structure:
+
+```hcl
+cidr_block   = "10.0.0.0/16"
+project_name = "windowsnaopresta"
+instance_ami = "ami-04a81a99f5ec58529"
+key_name     = "nomedachave"
+key_path     = "caminhodachave"
+meu_ip       = "111.000.111.222"
+desc_meu_ip  = "Descrição do IF"
+```
+
+---
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
