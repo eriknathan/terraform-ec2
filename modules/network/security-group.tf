@@ -1,5 +1,5 @@
 resource "aws_security_group" "arcanjo_security_group" {
-  name = "${var.project_name}-sg-ec2-tf"
+  name = "ec2-${var.project_name}-sg-tf"
   vpc_id = aws_vpc.arcanjo_vpc.id
 
   ingress {
@@ -7,8 +7,7 @@ resource "aws_security_group" "arcanjo_security_group" {
     to_port     = 22
     protocol    = "tcp"
     cidr_blocks = ["${var.meu_ip}/32"]
-    # cidr_blocks = ["0.0.0.0/0"]
-    description = "Porta 22 aberta para qualquer IP"
+    description = "IP de ${var.desc_meu_ip}"
   }
 
   egress {

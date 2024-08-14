@@ -17,3 +17,8 @@ variable "meu_ip" {
   type        = string
   description = "IP para liberar acesso via ssh no SG"
 }
+
+variable "desc_meu_ip" {
+  type        = string
+  description = "Descrição do Ip Atrelado"
+}
